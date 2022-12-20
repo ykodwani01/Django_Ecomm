@@ -1,0 +1,61 @@
+{% extends 'basic.html' %}
+
+</head>
+  
+<body>
+  {%block body%}
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="fashion">Fashion - Click for more</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      
+  </nav>
+  <div class="card-deck">
+    {% for i in product %}
+    {% if  i.product_category == "fashion" and forloop.counter < 8 %}
+    <div class="card">
+      <img class="card-img-top" src="/media/{{i.image}}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{i.product_name}}</h5>
+        <p class="card-text">Price : {{i.price}}</p>
+        <button type="button" class="btn btn-primary">Add</button>
+        <p class="card-text"><small class="text-muted">{{i.publish_date}}</small></p>
+      </div>
+    </div>
+    {%endif%}
+    
+
+    {%endfor%}
+
+
+
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="stationary">Stationary - Click for more</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      
+  </nav>
+  <div class="card-deck">
+    {% for i in product %}
+    {% if  i.product_category == "stationary" and forloop.counter < 8 %}
+    <div class="card">
+      <img class="card-img-top" src="/media/{{i.image}}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{i.product_name}}</h5>
+        <p class="card-text">Price : {{i.price}}</p>
+        <button type="button" class="btn btn-primary">Add</button>
+        <p class="card-text"><small class="text-muted">{{i.publish_date}}</small></p>
+      </div>
+    </div>
+    {%endif%}
+    
+
+    {%endfor%}
+
+
+    
+  </div>
+
+  {%endblock%}
+</body>
+</html>
