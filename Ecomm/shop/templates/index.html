@@ -57,7 +57,9 @@
       <div class="card-body">
         <h5 class="card-title">{{i.product_name}}</h5>
         <p class="card-text">Price : {{i.price}}</p>
-        <button class="btn btn-primary cart" id="pr{{i.product_id}}" >Add</button>
+        <button class="btn btn-primary cart" id="{{i.product_name}}" >Add</button>
+        <button class="btn btn-primary cart_sub" id="{{i.product_name}}" >Clear</button>
+        <a href="detail/{{i.product_id}}"><button class="btn btn-primary view" id="{{i.product_name}}">View More</button></a>
         <p class="card-text"><small class="text-muted">{{i.publish_date}}</small></p>
       </div>
     </div>
@@ -83,7 +85,9 @@
         <div class="card-body">
           <h5 class="card-title">{{i.product_name}}</h5>
           <p class="card-text">Price : {{i.price}}</p>
-          <button class="btn btn-primary cart" id="pr{{i.product_id}}">Add</button>
+          <button class="btn btn-primary cart" id="{{i.product_name}}">Add</button>
+          <button class="btn btn-primary cart_sub" id="{{i.product_name}}" >Clear</button>
+          <a href="detail/{{i.product_id}}"><button class="btn btn-primary view" id="{{i.product_name}}">View More</button></a>
           <p class="card-text"><small class="text-muted">{{i.publish_date}}</small></p>
         </div>
       </div>
@@ -98,30 +102,49 @@
     
     
   </body>
+  </html>
   <script>
     console.log('working')
     if(localStorage.getItem('cart') == null)
     {
     var cart={};
-    }
-    else{
+  }
+  else{
     cart= JSON.parse(localStorage.getItem('cart'));
-    }
+  }
   
-    $('.cart').click(function(){
-      console.log('clicked');
-      var idstr = this.id.toString();
-      console.log(idstr);
-      if (cart[idstr] !=undefined){
+  $('.cart').click(function(){
+    console.log('clicked');
+    var idstr = this.id.toString();
+    console.log(idstr);
+    if (cart[idstr] !=undefined){
       cart[idstr] = cart[idstr] + 1;
-      }
-      else
-      {
+    }
+    else
+    {
       cart[idstr] = 1;
-      }
-      console.log(cart);
+    }
+    console.log(cart);
+    localStorage.setItem("cart", JSON.stringify(cart));
       
       });
+
+      $('.cart_sub').click(function(){
+        console.log('clicked');
+        var idstr = this.id.toString();
+        console.log(idstr);
+        if (cart[idstr] !=undefined){
+        cart[idstr] = 0;
+        }
+        else
+        {
+        cart[idstr] = 0 ;
+        }
+        console.log(cart);
+        
+        });
   
     </script>
-  </html>
+
+
+   

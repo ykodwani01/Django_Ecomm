@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Product(models.Model):
-    product_id=models.AutoField
+    product_id=models.IntegerField(default=1)
     product_name=models.CharField(max_length=50)
     publish_date=models.DateField()
     price=models.IntegerField()
