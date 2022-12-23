@@ -12,11 +12,27 @@ def index(request):
     params={'num_slides':nslides , 'range':range(1,nslides), 'product':products}
     
     return render(request,"index.html",params)
+def searchMatch(query, item):
+    if query in item.product_name or query in item.product_category:
+        return True
+    else:
+        return False
 
 def search(request):
-    q=request.GET.get('search')
-    
-    return render(request,"index.html")
+    query= request.GET.get('search')
+    allProds = []
+    catprods = Product.objects.values('product_category', 'id')
+    cats = {item['product_category'] for item in catprods}
+    for cat in cats:
+        prodtemp = Product.objects.filter(product_category=cat)
+        prod=[item for item in prodtemp if searchMatch(query, item)]
+        n = len(prod)
+        nSlides = n // 4 + ceil((n / 4) - (n // 4))
+        allProds.append([prod, range(1, nSlides), nSlides])
+
+    params = {'allProds': allProds, "msg":""}
+   
+    return render(request, 'index.html', params)
 
 
 
