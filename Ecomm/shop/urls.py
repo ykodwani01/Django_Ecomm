@@ -5,7 +5,7 @@ import js2py
 from . import views
 urlpatterns = [
     path("",views.index,name="ShopHome"),
-    path("checkout",views.checkout,name="checkout"),
+    path("checkout/",views.checkout,name="checkout"),
     path("cart",views.cart,name='cart'),
     path("profile",views.profile,name='profile'),
     path("search",views.search,name='search'),
